@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111716">
+  <meta name="description" content="Explore poker ranges, solve custom spots and practice decisions in your offline poker study workspace.">
+  <title>RangeLab · Poker study workspace</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./engine.js"></script>
+  <script defer src="./gpu.js"></script>
+  <script defer src="./line-explorer.js"></script>
+  <script defer src="./postflop.js"></script>
+  <script defer src="./analyze.js"></script>
+  <script defer src="./reports.js"></script>
+  <script defer src="./tournament.js"></script>
+  <script defer src="./pwa.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="header-inner">
+      <a class="brand" href="#study" aria-label="RangeLab explorer">
+        <img src="./icon.svg" alt="" width="37" height="37"><span>Range<span class="brand-end">Lab</span></span>
+      </a>
+      <nav id="nav" aria-label="Main navigation"></nav>
+      <div class="top-tools">
+        <button class="engine-chip" id="engine-info" title="View engine and offline status"><i class="dot"></i><span id="engine-status">Local engine</span></button>
+        <i class="tool-divider"></i>
+        <button class="icon-button" id="library" title="Saved spots" aria-label="Saved spots"></button>
+        <button class="icon-button" id="install" title="Install RangeLab" aria-label="Install RangeLab"></button>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="shell" tabindex="-1"></main>
+  <dialog id="dialog"><div id="dialog-body"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript>Enable JavaScript to run the poker engine on your device.</noscript>
+</body>
+</html>

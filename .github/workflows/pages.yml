@@ -1,0 +1,38 @@
+name: Deploy RangeLab to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check poker models
+        run: node --test
+      - uses: actions/configure-pages@v5
+      - name: Version the offline cache
+        run: sed -i "s/__RANGELAB_RELEASE__/$GITHUB_SHA/g" rangelab/dist/sw.js
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: rangelab/dist
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v4
